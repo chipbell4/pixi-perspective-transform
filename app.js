@@ -22,6 +22,7 @@ stage.addChild(graphics);
 requestAnimationFrame(animate);
 
 function animate() {
+  graphics.rotation += 0.01;
   renderer.render(stage);
   requestAnimationFrame(animate);
 }
