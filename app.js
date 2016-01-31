@@ -11,6 +11,9 @@ document.body.appendChild(renderer.view);
 // create an new instance of a pixi stage
 var stage = new PIXI.Stage(0xFFFFFF);
 
+var graphics = PIXI.Sprite.fromImage('checker.png');
+stage.addChild(graphics);
+
 requestAnimationFrame(animate);
 
 function animate() {
