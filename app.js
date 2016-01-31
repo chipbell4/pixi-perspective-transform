@@ -1,3 +1,5 @@
+var PerspectiveTransform = require('./PerspectiveTransform');
+
 var viewWidth = 630;
 var viewHeight = 410;
 
@@ -12,6 +14,7 @@ document.body.appendChild(renderer.view);
 var stage = new PIXI.Stage(0xFFFFFF);
 
 var graphics = PIXI.Sprite.fromImage('checker.png');
+graphics.filters = [ new PerspectiveTransform() ];
 stage.addChild(graphics);
 
 requestAnimationFrame(animate);
