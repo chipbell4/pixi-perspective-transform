@@ -11,11 +11,22 @@ var PerspectiveTransform = function() {
 
   ].join('\n');
 
+  var uniforms = {
+    x_focus: {
+      type: '1f',
+      value: 0.5
+    },
+    y_focus: {
+      type: '1f',
+      value: 0.5
+    },
+  };
+
   PIXI.AbstractFilter.call(
     this,
     null,
     fragmentShader,
-    {}
+    uniforms
   );
 };
 
