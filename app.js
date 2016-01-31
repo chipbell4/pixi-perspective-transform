@@ -14,7 +14,9 @@ document.body.appendChild(renderer.view);
 var stage = new PIXI.Stage(0xFFFFFF);
 
 var graphics = PIXI.Sprite.fromImage('checker.png');
-graphics.filters = [ new PerspectiveTransform() ];
+graphics.filters = [
+  new PerspectiveTransform({ x_scale: 2 })
+];
 stage.addChild(graphics);
 
 requestAnimationFrame(animate);

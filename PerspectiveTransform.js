@@ -1,4 +1,10 @@
-var PerspectiveTransform = function() {
+var PerspectiveTransform = function(options) {
+  options = options || {};
+  options.x_focus = options.x_focus || 0.5;
+  options.y_focus = options.y_focus || 0;
+  options.x_scale = options.x_scale || 1;
+  options.y_scale = options.y_scale || 1;
+
   var fragmentShader = [
     'precision mediump float;',
     'varying vec2 vTextureCoord;',
@@ -20,19 +26,19 @@ var PerspectiveTransform = function() {
   var uniforms = {
     x_focus: {
       type: '1f',
-      value: 0.5
+      value: options.x_focus
     },
     y_focus: {
       type: '1f',
-      value: 0
+      value: options.y_focus
     },
     x_scale: {
       type: '1f',
-      value: 1
+      value: options.x_scale
     },
     y_scale: {
       type: '1f',
-      value: 1
+      value: options.y_scale
     }
   };
 
