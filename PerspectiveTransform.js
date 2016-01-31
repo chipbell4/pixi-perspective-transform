@@ -5,10 +5,11 @@ var PerspectiveTransform = function() {
     'uniform sampler2D uSampler;',
     'uniform float x_focus;',
     'uniform float y_focus;',
+    'uniform float x_scale;',
 
     'void main(void) {',
     '  vec2 uv = vTextureCoord.xy;',
-    '  uv.x = (uv.x - x_focus) / (uv.y - y_focus) + x_focus;',
+    '  uv.x = (uv.x - x_focus) / (uv.y - y_focus) / x_scale + x_focus;',
     '  gl_FragColor = texture2D(uSampler, uv);',
     '}',
 
@@ -23,6 +24,10 @@ var PerspectiveTransform = function() {
       type: '1f',
       value: 0
     },
+    x_scale: {
+      type: '1f',
+      value: 1
+    }
   };
 
   PIXI.AbstractFilter.call(
