@@ -21,7 +21,7 @@ var PerspectiveTransform = function() {
     },
     y_focus: {
       type: '1f',
-      value: 1.2
+      value: 0
     },
   };
 
