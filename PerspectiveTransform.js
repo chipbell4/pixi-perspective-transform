@@ -6,10 +6,12 @@ var PerspectiveTransform = function() {
     'uniform float x_focus;',
     'uniform float y_focus;',
     'uniform float x_scale;',
+    'uniform float y_scale;',
 
     'void main(void) {',
     '  vec2 uv = vTextureCoord.xy;',
     '  uv.x = (uv.x - x_focus) / (uv.y - y_focus) / x_scale + x_focus;',
+    '  uv.y = (uv.y - y_focus) / y_scale + y_focus;',
     '  gl_FragColor = texture2D(uSampler, uv);',
     '}',
 
@@ -25,6 +27,10 @@ var PerspectiveTransform = function() {
       value: 0
     },
     x_scale: {
+      type: '1f',
+      value: 1
+    },
+    y_scale: {
       type: '1f',
       value: 1
     }
