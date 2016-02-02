@@ -21,7 +21,7 @@ graphics.width = graphics.height = 300;
 graphics.filters = [
   new PerspectiveTransform({
     x_scale: 1.0,
-    x_focus: 0.25,
+    x_focus: 0.25, // why is this a quarter, rather than a half?
     y_focus: -0.1,
   })
 ];
