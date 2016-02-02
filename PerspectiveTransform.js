@@ -17,7 +17,6 @@ var PerspectiveTransform = function(options) {
     'void main(void) {',
     '  vec2 uv = vTextureCoord.xy;',
     '  uv.x = (uv.x - x_focus) / (uv.y - y_focus) / x_scale + x_focus;',
-    '  uv.y = (uv.y - y_focus) / y_scale + y_focus;',
     '  gl_FragColor = texture2D(uSampler, uv);',
     '}',
 

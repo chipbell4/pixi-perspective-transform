@@ -20,10 +20,9 @@ graphics.position.y = viewHeight / 2;
 graphics.width = graphics.height = 300;
 graphics.filters = [
   new PerspectiveTransform({
-    x_scale: 1,
-    y_scale: 1,
-    x_focus: 0,
-    y_focus: 0,
+    x_scale: 1.0,
+    x_focus: 0.25,
+    y_focus: -0.1,
   })
 ];
 stage.addChild(graphics);
@@ -31,7 +30,6 @@ stage.addChild(graphics);
 requestAnimationFrame(animate);
 
 function animate() {
-  //graphics.rotation += 0.01;
   renderer.render(stage);
   requestAnimationFrame(animate);
 }
