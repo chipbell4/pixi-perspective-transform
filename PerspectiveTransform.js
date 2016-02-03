@@ -10,6 +10,7 @@ var PerspectiveTransform = function(options) {
     graphics_height: 1,
   };
 
+  // Assign defaults for options
   options = options || {};
   Object.keys(defaults).forEach(function(key) {
     options[key] = options[key] || defaults[key];
