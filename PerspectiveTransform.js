@@ -4,6 +4,10 @@ var PerspectiveTransform = function(options) {
   options.y_focus = options.y_focus || 0;
   options.x_scale = options.x_scale || 1;
   options.y_scale = options.y_scale || 1;
+  options.view_width = options.view_width || 1;
+  options.view_height = options.view_height || 1;
+  options.graphics_width = options.graphics_width || 1;
+  options.graphics_height = options.graphics_height || 1;
 
   var fragmentShader = [
     'precision mediump float;',
@@ -13,6 +17,10 @@ var PerspectiveTransform = function(options) {
     'uniform float y_focus;',
     'uniform float x_scale;',
     'uniform float y_scale;',
+    'uniform float view_width;',
+    'uniform float view_height;',
+    'uniform float graphics_width;',
+    'uniform float graphics_height;',
 
     'void main(void) {',
     '  vec2 uv = vTextureCoord.xy;',
@@ -22,24 +30,15 @@ var PerspectiveTransform = function(options) {
 
   ].join('\n');
 
-  var uniforms = {
-    x_focus: {
+  var floatUniforms = ['x_focus', 'y_focus', 'x_scale', 'y_scale', 'view_width', 'view_height', 'graphics_width', 'graphics_height'];
+
+  var uniforms = {};
+  floatUniforms.forEach(function(uniformName) {
+    uniforms[uniformName] = {
       type: '1f',
-      value: options.x_focus
-    },
-    y_focus: {
-      type: '1f',
-      value: options.y_focus
-    },
-    x_scale: {
-      type: '1f',
-      value: options.x_scale
-    },
-    y_scale: {
-      type: '1f',
-      value: options.y_scale
-    }
-  };
+      value: options[uniformName],
+    };
+  });
 
   PIXI.AbstractFilter.call(
     this,
