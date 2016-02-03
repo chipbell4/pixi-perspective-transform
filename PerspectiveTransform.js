@@ -15,18 +15,15 @@ var PerspectiveTransform = function(options) {
     options[key] = options[key] || defaults[key];
   });
 
+  var uniformsDeclaration = Object.keys(defaults).map(function(uniformName) {
+    return 'uniform float ' + uniformName + ';';
+  }).join('\n');
+
   var fragmentShader = [
     'precision mediump float;',
     'varying vec2 vTextureCoord;',
     'uniform sampler2D uSampler;',
-    'uniform float x_focus;',
-    'uniform float y_focus;',
-    'uniform float x_scale;',
-    'uniform float y_scale;',
-    'uniform float view_width;',
-    'uniform float view_height;',
-    'uniform float graphics_width;',
-    'uniform float graphics_height;',
+    uniformsDeclaration,
 
     'void main(void) {',
     '  vec2 uv = vTextureCoord.xy;',
