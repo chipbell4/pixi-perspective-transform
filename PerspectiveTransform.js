@@ -1,13 +1,19 @@
 var PerspectiveTransform = function(options) {
+  var defaults = {
+    x_focus: 0.5,
+    y_focus: 0,
+    x_scale: 1,
+    y_scale: 1,
+    view_width: 1,
+    view_height: 1,
+    graphics_width: 1,
+    graphics_height: 1,
+  }
+
   options = options || {};
-  options.x_focus = options.x_focus || 0.5;
-  options.y_focus = options.y_focus || 0;
-  options.x_scale = options.x_scale || 1;
-  options.y_scale = options.y_scale || 1;
-  options.view_width = options.view_width || 1;
-  options.view_height = options.view_height || 1;
-  options.graphics_width = options.graphics_width || 1;
-  options.graphics_height = options.graphics_height || 1;
+  Object.keys(defaults).forEach(function(key) {
+    options[key] = options[key] || defaults[key];
+  });
 
   var fragmentShader = [
     'precision mediump float;',
@@ -30,10 +36,8 @@ var PerspectiveTransform = function(options) {
 
   ].join('\n');
 
-  var floatUniforms = ['x_focus', 'y_focus', 'x_scale', 'y_scale', 'view_width', 'view_height', 'graphics_width', 'graphics_height'];
-
   var uniforms = {};
-  floatUniforms.forEach(function(uniformName) {
+  Object.keys(defaults).forEach(function(uniformName) {
     uniforms[uniformName] = {
       type: '1f',
       value: options[uniformName],
