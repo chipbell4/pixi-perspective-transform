@@ -8,7 +8,7 @@ var PerspectiveTransform = function(options) {
     view_height: 1,
     graphics_width: 1,
     graphics_height: 1,
-  }
+  };
 
   options = options || {};
   Object.keys(defaults).forEach(function(key) {
