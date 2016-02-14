@@ -21,10 +21,10 @@ graphics.width = graphics.height = 200;
 graphics.filters = [
   new PerspectiveTransform({
     x_scale: 1.0,
-    // HAHA! This number should be in PERCENTAGE OF THE SCREEN WIDTH, rather than graphics width.
-    // TODO: Update the shader to take parameters for the graphics and windows sizes!
-    x_focus: 0.25,
-    y_focus: -0.1,
+    c_x: 0.5,
+    c_y: 0.5,
+    f_x: 0.5,
+    f_y: -0.2
   })
 ];
 stage.addChild(graphics);
