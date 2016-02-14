@@ -7,8 +7,10 @@
   are scaled to exactly 0 and points at y=0 are scaled to
   exactly some x scale factor (this might be a parameter later?)
   `xP = S x * (1 - y)`
+* Push everything back to the center of rotation
 
 # Transform _from_ perspective
+* Translate everything to the origin from the center of rotation/perspective
 * Undo the perspective transformation, so that points at y=0 are
   scaled by the x scale factor, and that points at y=1 are
   scaled to (a clamped) infinity
