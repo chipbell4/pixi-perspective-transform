@@ -8,18 +8,26 @@
                 line-height: 2em;
                 font-size: 24px;
             }
+            label {
+                font-style: italic;
+            }
+
+            input[type=number] {
+                font-size: 24px;
+            }
+
         </style>
     </head>
     <body>
-        <label>x scale<input type="number" id="x_scale" min="-0.5" max="1.5" step="0.01"/></label>
+        <label>x<sub>scale</sub> = <input type="number" id="x_scale" min="-0.5" max="1.5" step="0.01"/></label>
         <br/>
-        <label>cx<input type="number" id="c_x" min="-0.5" max="1.5" step="0.01"/></label>
+        <label>c<sub>x</sub> = <input type="number" id="c_x" min="-0.5" max="1.5" step="0.01"/></label>
         <br/>
-        <label>cy<input type="number" id="c_y" min="-0.5" max="1.5" step="0.01"/></label>
+        <label>c<sub>y</sub> = <input type="number" id="c_y" min="-0.5" max="1.5" step="0.01"/></label>
         <br/>
-        <label>fx<input type="number" id="f_x" min="-0.5" max="1.5" step="0.01"/></label>
+        <label>f<sub>x</sub> = <input type="number" id="f_x" min="-0.5" max="1.5" step="0.01"/></label>
         <br/>
-        <label>fy<input type="number" id="f_y" min="-0.5" max="1.5" step="0.01"/></label>
+        <label>f<sub>y</sub> = <input type="number" id="f_y" min="-0.5" max="1.5" step="0.01"/></label>
         </br>
         <script src="bundled.js"></script>
     </body>
