@@ -23,7 +23,7 @@ var perspective = new PerspectiveTransform({
     c_x: 0.5,
     c_y: 0.5,
     f_x: 0.5,
-    f_y: -0.2
+    f_y: 1.0
   })
 graphics.filters = [perspective];
 stage.addChild(graphics);
