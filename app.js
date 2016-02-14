@@ -44,4 +44,7 @@ keys.forEach(function(key) {
     perspective.uniforms[key].value = Number(range.value);
     span.innerHTML = key + ' = ' + range.value;
   });
+
+  // initial value
+  span.innerHTML = key + ' = ' + perspective.uniforms[key].value;
 });
