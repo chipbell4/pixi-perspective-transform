@@ -32,6 +32,10 @@ var PerspectiveTransform = function(options) {
     '  vec2 f = vec2(f_x, f_y);',
 
     '  vec3 uv = vec3(vTextureCoord.xy, 1.0);',
+  
+    // translate to center
+    '  uv.xy = uv.xy - c;',
+
     // apply transformation to "undo" a perspective
     '  uv.x /= (1.0 - uv.y) * x_scale;',
 
