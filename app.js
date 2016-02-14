@@ -36,10 +36,12 @@ function animate() {
 }
 
 // Allow the range to control values
-var range = document.getElementById('range');
-var span = document.getElementById('range-value');
-range.addEventListener('input', function() {
-  var key = 'c_x';
-  perspective.uniforms[key].value = Number(range.value);
-  span.innerHTML = key + ' = ' + range.value;
+var keys = ['x_scale', 'c_x', 'c_y', 'f_x', 'f_y'];
+keys.forEach(function(key) {
+  var range = document.getElementById(key);
+  var span = document.getElementById(key + '_value');
+  range.addEventListener('input', function() {
+    perspective.uniforms[key].value = Number(range.value);
+    span.innerHTML = key + ' = ' + range.value;
+  });
 });
