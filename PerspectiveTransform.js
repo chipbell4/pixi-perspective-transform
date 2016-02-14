@@ -4,14 +4,11 @@
  */
 var PerspectiveTransform = function(options) {
   var defaults = {
-    x_focus: 0.5,
-    y_focus: 0,
     x_scale: 1,
-    y_scale: 1,
-    view_width: 1,
-    view_height: 1,
-    graphics_width: 1,
-    graphics_height: 1,
+    c_x: 0,
+    c_y: 0,
+    f_x: 1,
+    f_y: 1
   };
 
   // Assign defaults for options
@@ -28,11 +25,11 @@ var PerspectiveTransform = function(options) {
     'precision mediump float;',
     'varying vec2 vTextureCoord;',
     'uniform sampler2D uSampler;',
+    uniformsDeclaration,
 
     'void main(void) {',
-    '  float x_scale = 1.0;',
-    '  vec2 c = vec2(0.0, 0.0);',
-    '  vec2 f = vec2(1.0, 1.0);',
+    '  vec2 c = vec2(c_x, c_y);',
+    '  vec2 f = vec2(f_x, f_y);',
 
     '  vec3 uv = vec3(vTextureCoord.xy, 1.0);',
     // apply transformation to "undo" a perspective
