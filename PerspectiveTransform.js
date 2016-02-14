@@ -28,29 +28,32 @@ var PerspectiveTransform = function(options) {
     'precision mediump float;',
     'varying vec2 vTextureCoord;',
     'uniform sampler2D uSampler;',
-    uniformsDeclaration,
 
     'void main(void) {',
+    '  float x_scale = 1.0;',
+    '  vec2 c = vec2(0.0, 0.0);',
+    '  vec2 f = vec2(1.0, 1.0);',
+
     '  vec3 uv = vec3(vTextureCoord.xy, 1.0);',
     // apply transformation to "undo" a perspective
-    
-    // unscale
-    '  mat3 unscale = mat3(vec3(1.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0), vec3(0.0, 0.0, 1.0));',
-    '  uv = unscale * uv;',
-   
-    // "unperspective"
-    //'  uv.x = uv.x / (1.0 - uv.y);',
+    '  uv.x /= (1.0 - uv.y) * x_scale;',
+
+    // scale by the distance from f to c
+    '  uv.y *= length(f - c);',
 
     // unrotate
-    '  float theta = 3.14159 / 4.0;',
+    '  float pi = 3.14159;',
+    '  float theta = pi / 2.0 - atan(f.y - c.y, f.x - c.x);',
     '  mat3 unrotate = mat3( vec3(cos(theta), sin(theta), 0.0), vec3(-sin(theta), cos(theta), 0.0), vec3(0.0, 0.0, 1.0));',
     '  uv = unrotate * uv;',
 
     // untranslate
-    '  uv.x +=  0.3;',
-    '  uv.y += -0.2;',
+    '  uv.xy = uv.xy + c;',
 
+    // Set the color
     '  gl_FragColor = texture2D(uSampler, uv.xy);',
+
+    // Clamp to the texture, so we don't get "bleed"
     '  if(uv.x < 0.0 || uv.y < 0.0 || uv.x > 1.0 || uv.y > 1.0) gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);',
     '}',
 
