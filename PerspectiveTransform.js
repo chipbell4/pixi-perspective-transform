@@ -7,8 +7,8 @@ var PerspectiveTransform = function(options) {
     x_scale: 1,
     c_x: 0,
     c_y: 0,
-    f_x: 1,
-    f_y: 1,
+    f_radius: 1,
+    f_theta: 0,
     sprite_width: 100,
     sprite_height: 100,
     viewport_width: 100,
@@ -36,15 +36,14 @@ var PerspectiveTransform = function(options) {
 
     // some declarations
     '  vec2 c = vec2(c_x, c_y);',
-    '  vec2 f = vec2(f_x, f_y);',
+    '  vec2 f = vec2(f_radius * cos(f_theta), f_radius * sin(f_theta));',
 
     // scale to be in unit square
     '  uv.x *= viewport_width / sprite_width;',
     '  uv.y *= viewport_height / sprite_height;',
-  
+    
     // translate to center
     '  uv.xy -= c;',
-    '  uv.y *= -1.0;',
 
     // apply transformation to "undo" a perspective
     '  uv.x /= (1.0 - uv.y) * x_scale;',
@@ -53,9 +52,7 @@ var PerspectiveTransform = function(options) {
     '  uv.y *= length(f - c);',
 
     // unrotate
-    '  float pi = 3.14159;',
-    '  float theta = atan(f.y - c.y, f.x - c.x);',
-    '  mat3 unrotate = mat3( vec3(cos(theta), -sin(theta), 0.0), vec3(sin(theta), cos(theta), 0.0), vec3(0.0, 0.0, 1.0));',
+    '  mat3 unrotate = mat3( vec3(cos(f_theta), -sin(f_theta), 0.0), vec3(sin(f_theta), cos(f_theta), 0.0), vec3(0.0, 0.0, 1.0));',
     '  uv = unrotate * uv;',
 
     // untranslate
