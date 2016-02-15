@@ -19,16 +19,16 @@ graphics.position.x = viewWidth / 2;
 graphics.position.y = viewHeight / 2;
 graphics.width = graphics.height = 200;
 var perspective = new PerspectiveTransform({
-    x_scale: 1.0,
-    c_x: 0.5,
-    c_y: 0.5,
-    f_x: 0.5,
-    f_y: 1.0,
-    sprite_width: 200,
-    sprite_height: 200,
-    viewport_width: viewWidth,
-    viewport_height: viewHeight,
-  })
+  x_scale: 1.0,
+  c_x: 0.5,
+  c_y: 0.5,
+  f_x: 0.5,
+  f_y: 1.0,
+  sprite_width: 200,
+  sprite_height: 200,
+  viewport_width: viewWidth,
+  viewport_height: viewHeight,
+});
 graphics.filters = [perspective];
 stage.addChild(graphics);
 
