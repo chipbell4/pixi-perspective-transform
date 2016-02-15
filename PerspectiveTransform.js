@@ -47,7 +47,7 @@ var PerspectiveTransform = function(options) {
     '  uv.x /= x_scale;',
 
     // scale by the distance from f to c
-    //'  uv.y *= length(f - c);',
+    '  uv.y *= sqrt(pow(f_x - c_x, 2.0) + pow(f_y - c_y, 2.0));',
 
     // unrotate
     '  float pi = 3.14159;',
