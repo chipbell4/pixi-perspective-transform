@@ -28,28 +28,28 @@ var PerspectiveTransform = function(options) {
     uniformsDeclaration,
 
     'void main(void) {',
-    '  vec2 c = vec2(c_x, c_y);',
-    '  vec2 f = vec2(f_x, f_y);',
-
     '  vec3 uv = vec3(vTextureCoord.xy, 1.0);',
   
     // translate to center
-    '  uv.xy = uv.xy - c;',
+    '  uv.x -= c_x;',
+    '  uv.y -= c_y;',
 
     // apply transformation to "undo" a perspective
-    '  uv.x /= (1.0 - uv.y) * x_scale;',
+    //'  uv.x /= (1.0 - uv.y) * x_scale;',
+    '  uv.x /= x_scale;',
 
     // scale by the distance from f to c
-    '  uv.y *= length(f - c);',
+    //'  uv.y *= length(f - c);',
 
     // unrotate
     '  float pi = 3.14159;',
-    '  float theta = pi / 2.0 - atan(f.y - c.y, f.x - c.x);',
+    '  float theta = pi / 2.0 - atan(f_y - c_y, f_x - c_x);',
     '  mat3 unrotate = mat3( vec3(cos(theta), sin(theta), 0.0), vec3(-sin(theta), cos(theta), 0.0), vec3(0.0, 0.0, 1.0));',
-    '  uv = unrotate * uv;',
+    //'  uv = unrotate * uv;',
 
     // untranslate
-    '  uv.xy = uv.xy + c;',
+    '  uv.x += c_x;',
+    '  uv.y += c_y;',
 
     // Set the color
     '  gl_FragColor = texture2D(uSampler, uv.xy);',
