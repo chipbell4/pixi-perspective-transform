@@ -17,15 +17,15 @@ var graphics = PIXI.Sprite.fromImage('checker.png');
 graphics.anchor.x = graphics.anchor.y = 0.5;
 graphics.position.x = viewWidth / 2;
 graphics.position.y = viewHeight / 2;
-graphics.width = graphics.height = 200;
+graphics.width = graphics.height = 400;
 var perspective = new PerspectiveTransform({
   x_scale: 1.0,
   c_x: 0.5,
   c_y: 0.5,
   f_x: 0.5,
   f_y: 1.0,
-  sprite_width: 200,
-  sprite_height: 200,
+  sprite_width: graphics.width,
+  sprite_height: graphics.height,
   viewport_width: viewWidth,
   viewport_height: viewHeight,
 });

@@ -44,6 +44,7 @@ var PerspectiveTransform = function(options) {
   
     // translate to center
     '  uv.xy -= c;',
+    '  uv.y *= -1.0;',
 
     // apply transformation to "undo" a perspective
     '  uv.x /= (1.0 - uv.y) * x_scale;',
@@ -53,8 +54,8 @@ var PerspectiveTransform = function(options) {
 
     // unrotate
     '  float pi = 3.14159;',
-    '  float theta = pi / 2.0 - atan(f.y - c.y, f.x - c.x);',
-    '  mat3 unrotate = mat3( vec3(cos(theta), sin(theta), 0.0), vec3(-sin(theta), cos(theta), 0.0), vec3(0.0, 0.0, 1.0));',
+    '  float theta = atan(f.y - c.y, f.x - c.x);',
+    '  mat3 unrotate = mat3( vec3(cos(theta), -sin(theta), 0.0), vec3(sin(theta), cos(theta), 0.0), vec3(0.0, 0.0, 1.0));',
     '  uv = unrotate * uv;',
 
     // untranslate
