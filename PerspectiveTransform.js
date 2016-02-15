@@ -46,8 +46,7 @@ var PerspectiveTransform = function(options) {
     '  uv.xy -= c;',
 
     // apply transformation to "undo" a perspective
-    //'  uv.x /= (1.0 - uv.y) * x_scale;',
-    '  uv.x /= x_scale;',
+    '  uv.x /= (1.0 - uv.y) * x_scale;',
 
     // scale by the distance from f to c
     '  uv.y *= length(f - c);',
