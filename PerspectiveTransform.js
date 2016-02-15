@@ -49,7 +49,7 @@ var PerspectiveTransform = function(options) {
     '  uv.x /= (1.0 - uv.y) * x_scale;',
 
     // scale by the distance from f to c
-    '  uv.y *= length(f - c);',
+    '  uv.y *= f_radius;',
 
     // unrotate
     '  mat3 unrotate = mat3( vec3(cos(f_theta), -sin(f_theta), 0.0), vec3(sin(f_theta), cos(f_theta), 0.0), vec3(0.0, 0.0, 1.0));',
