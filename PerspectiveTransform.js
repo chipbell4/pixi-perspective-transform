@@ -55,7 +55,7 @@ var PerspectiveTransform = function(options) {
     '  float pi = 3.14159;',
     '  float theta = pi / 2.0 - atan(f.y - c.y, f.x - c.x);',
     '  mat3 unrotate = mat3( vec3(cos(theta), sin(theta), 0.0), vec3(-sin(theta), cos(theta), 0.0), vec3(0.0, 0.0, 1.0));',
-    //'  uv = unrotate * uv;',
+    '  uv = unrotate * uv;',
 
     // untranslate
     '  uv.xy += c;',
