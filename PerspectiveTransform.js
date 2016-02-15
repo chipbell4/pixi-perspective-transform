@@ -8,7 +8,11 @@ var PerspectiveTransform = function(options) {
     c_x: 0,
     c_y: 0,
     f_x: 1,
-    f_y: 1
+    f_y: 1,
+    sprite_width: 100,
+    sprite_height: 100,
+    viewport_width: 100,
+    viewport_height: 100,
   };
 
   // Assign defaults for options
@@ -29,6 +33,10 @@ var PerspectiveTransform = function(options) {
 
     'void main(void) {',
     '  vec3 uv = vec3(vTextureCoord.xy, 1.0);',
+
+    // scale to be in unit square
+    '  uv.x *= viewport_width / sprite_width;',
+    '  uv.y *= viewport_height / sprite_height;',
   
     // translate to center
     '  uv.x -= c_x;',
@@ -50,6 +58,10 @@ var PerspectiveTransform = function(options) {
     // untranslate
     '  uv.x += c_x;',
     '  uv.y += c_y;',
+
+    // rescale back
+    '  uv.x /= viewport_width / sprite_width;',
+    '  uv.y /= viewport_height / sprite_height;',
 
     // Set the color
     '  gl_FragColor = texture2D(uSampler, uv.xy);',
