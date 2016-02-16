@@ -45,9 +45,13 @@ var PerspectiveTransform = function(options) {
     // translate to center
     '  uv.xy -= c;',
 
+    '  uv.y *= -1.0;',
+
     // apply transformation to "undo" a perspective
     '  uv.x /= (1.0 - uv.y) * x_scale;',
 
+    '  uv.y *= -1.0;',
+    
     // scale by the distance from f to c
     '  uv.y *= f_radius;',
 
