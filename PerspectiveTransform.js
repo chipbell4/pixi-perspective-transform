@@ -30,7 +30,11 @@ var PerspectiveTransform = function(options) {
     'varying vec4 vColor;',
 
     'vec2 pinch(vec2 coordinate) {',
-    '  float scaleFactor = coordinate.y - 0.5;',
+    // TODO: Make uniforms
+    '  float min_scale = 0.5;',
+    '  float max_scale = 1.0;',
+    '  float scale_x_center = 0.5;',
+    '  float scaleFactor = (coordinate.x - scale_x_center) / 0.5 * (min_scale + (max_scale - min_scale) * coordinate.y);',
     '  return coordinate * vec2(scaleFactor, 1.0);',
     '}',
 
