@@ -25,15 +25,14 @@ var PerspectiveTransform = function(options) {
     'attribute vec4 aColor;',
 
     'uniform mat3 projectionMatrix;',
+    'uniform float bottom_scale;',
+    'uniform float top_scale;',
+    'uniform float scale_x_center;',
 
     'varying vec2 vTextureCoord;',
     'varying vec4 vColor;',
 
     'vec2 pinch(vec2 coordinate) {',
-    // TODO: Make uniforms
-    '  float bottom_scale = 1.0;',
-    '  float top_scale = 1.0;',
-    '  float scale_x_center = 0.5;',
     '  float centered_x = coordinate.x - scale_x_center;',
     '  float scale_factor = bottom_scale + (top_scale - bottom_scale) * coordinate.y;',
     '  return vec2(centered_x * scale_factor + scale_x_center, coordinate.y);',
@@ -46,11 +45,31 @@ var PerspectiveTransform = function(options) {
     '}'
   ].join('\n');
 
+  options = options || {};
+  options.bottom_scale = options.bottom_scale || 1.0;
+  options.top_scale = options.top_scale || 1.0;
+  options.scale_x_center = options.scale_x_center || 0.5;
+
+  var uniforms = {
+    bottom_scale: {
+      type: 'f',
+      value: options.bottom_scale
+    },
+    top_scale: {
+      type: 'f',
+      value: options.top_scale
+    },
+    scale_x_center: {
+      type: 'f',
+      value: options.scale_x_center
+    }
+  };
+
   PIXI.AbstractFilter.call(
     this,
     vertexShader,
     null,
-    {}
+    uniforms
   );
 };
 
