@@ -23,7 +23,7 @@ var PerspectiveTransform = function(options) {
 
     'vec2 pinch(vec2 coordinate) {',
     '  float centered_x = coordinate.x - scale_x_center;',
-    '  float scale_factor = bottom_scale + (top_scale - bottom_scale) * coordinate.y;',
+    '  float scale_factor = top_scale + (bottom_scale - top_scale) * coordinate.y;',
     '  return vec2(centered_x * scale_factor + scale_x_center, coordinate.y);',
     '}',
 
