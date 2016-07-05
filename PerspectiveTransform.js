@@ -29,9 +29,14 @@ var PerspectiveTransform = function(options) {
     'varying vec2 vTextureCoord;',
     'varying vec4 vColor;',
 
+    'vec2 pinch(vec2 coordinate) {',
+    '  float scaleFactor = coordinate.y - 0.5;',
+    '  return coordinate * vec2(scaleFactor, 1.0);',
+    '}',
+
     'void main(void){',
     '   gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);',
-    '   vTextureCoord = aTextureCoord;',
+    '   vTextureCoord = pinch(aTextureCoord);',
     '   vColor = vec4(aColor.rgb * aColor.a, aColor.a);',
     '}'
   ].join('\n');
