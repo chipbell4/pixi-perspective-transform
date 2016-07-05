@@ -16,17 +16,7 @@ var stage = new PIXI.Stage(0xFFFFFF);
 var graphics = PIXI.Sprite.fromImage('map.png');
 graphics.width = viewWidth;
 graphics.height = viewHeight;
-var perspective = new PerspectiveTransform({
-  x_scale: 1.0,
-  c_x: 0.5,
-  c_y: 0.5,
-  f_radius: 1,
-  f_theta: 0,
-  sprite_width: graphics.width,
-  sprite_height: graphics.height,
-  viewport_width: viewWidth,
-  viewport_height: viewHeight,
-});
+var perspective = new PerspectiveTransform();
 graphics.filters = [perspective];
 stage.addChild(graphics);
 
