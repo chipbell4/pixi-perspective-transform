@@ -28,13 +28,13 @@ function animate() {
 }
 
 // Allow the range to control values
-var keys = ['x_scale', 'c_x', 'c_y', 'f_radius', 'f_theta'];
+var keys = ['bottom_scale', 'top_scale', 'scale_x_center'];
 keys.forEach(function(key) {
   var range = document.getElementById(key);
   range.addEventListener('input', function() {
-    //perspective.uniforms[key].value = Number(range.value);
+    perspective.uniforms[key].value = Number(range.value);
   });
 
   // initial value
-  //range.value = perspective.uniforms[key].value;
+  range.value = perspective.uniforms[key].value;
 });
