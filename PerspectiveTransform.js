@@ -18,91 +18,11 @@
  * @param {float} options.viewport_height The height of the viewport
  */
 var PerspectiveTransform = function(options) {
-  var defaults = {
-    x_scale: 1,
-    c_x: 0,
-    c_y: 0,
-    f_radius: 1,
-    f_theta: 0,
-    sprite_width: 100,
-    sprite_height: 100,
-    viewport_width: 100,
-    viewport_height: 100,
-  };
-
-  // Assign defaults for options
-  options = options || {};
-  Object.keys(defaults).forEach(function(key) {
-    options[key] = options[key] || defaults[key];
-  });
-
-  var uniformsDeclaration = Object.keys(defaults).map(function(uniformName) {
-    return 'uniform float ' + uniformName + ';';
-  }).join('\n');
-
-  var fragmentShader = [
-    'precision mediump float;',
-    'varying vec2 vTextureCoord;',
-    'uniform sampler2D uSampler;',
-    uniformsDeclaration,
-
-    'void main(void) {',
-    '  vec3 uv = vec3(vTextureCoord.xy, 1.0);',
-
-    // some declarations
-    '  vec2 c = vec2(c_x, c_y);',
-    '  vec2 f = vec2(f_radius * cos(f_theta), f_radius * sin(f_theta));',
-
-    // scale to be in unit square
-    '  uv.x *= viewport_width / sprite_width;',
-    '  uv.y *= viewport_height / sprite_height;',
-    
-    // translate to center
-    '  uv.xy -= c;',
-
-    '  uv.y *= -1.0;',
-
-    // apply transformation to "undo" a perspective
-    '  uv.x /= (1.0 - uv.y) * x_scale;',
-
-    '  uv.y *= -1.0;',
-    
-    // scale by the distance from f to c
-    '  uv.y *= f_radius;',
-
-    // unrotate
-    '  mat3 unrotate = mat3( vec3(cos(f_theta), -sin(f_theta), 0.0), vec3(sin(f_theta), cos(f_theta), 0.0), vec3(0.0, 0.0, 1.0));',
-    '  uv = unrotate * uv;',
-
-    // untranslate
-    '  uv.xy += c;',
-
-    // rescale back
-    '  uv.x /= viewport_width / sprite_width;',
-    '  uv.y /= viewport_height / sprite_height;',
-
-    // Set the color
-    '  gl_FragColor = texture2D(uSampler, uv.xy);',
-
-    // Clamp to the texture, so we don't get "bleed"
-    '  if(uv.x < 0.0 || uv.y < 0.0 || uv.x > 1.0 || uv.y > 1.0) gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);',
-    '}',
-
-  ].join('\n');
-
-  var uniforms = {};
-  Object.keys(defaults).forEach(function(uniformName) {
-    uniforms[uniformName] = {
-      type: '1f',
-      value: options[uniformName],
-    };
-  });
-
   PIXI.AbstractFilter.call(
     this,
     null,
-    fragmentShader,
-    uniforms
+    null,
+    {}
   );
 };
 
