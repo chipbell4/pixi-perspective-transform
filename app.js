@@ -1,10 +1,7 @@
 var PerspectiveTransform = require('./PerspectiveTransform');
 
-var viewWidth = 630;
-var viewHeight = 410;
-
 // Create a pixi renderer
-var renderer = PIXI.autoDetectRenderer(viewWidth, viewHeight);
+var renderer = PIXI.autoDetectRenderer(630, 410);
 renderer.view.className = "rendererView";
 
 // add render view to DOM
@@ -14,8 +11,11 @@ document.body.appendChild(renderer.view);
 var stage = new PIXI.Stage(0xFFFFFF);
 
 var graphics = PIXI.Sprite.fromImage('map.png');
-graphics.width = viewWidth;
-graphics.height = viewHeight;
+graphics.width = renderer.width * 0.75;
+graphics.height = renderer.height * 0.75;
+graphics.position.x = renderer.width * 0.125;
+graphics.position.y = renderer.height * 0.125;
+
 var perspective = new PerspectiveTransform();
 graphics.filters = [perspective];
 stage.addChild(graphics);
