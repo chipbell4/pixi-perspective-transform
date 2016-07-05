@@ -42,9 +42,9 @@ var keys = ['x_scale', 'c_x', 'c_y', 'f_radius', 'f_theta'];
 keys.forEach(function(key) {
   var range = document.getElementById(key);
   range.addEventListener('input', function() {
-    perspective.uniforms[key].value = Number(range.value);
+    //perspective.uniforms[key].value = Number(range.value);
   });
 
   // initial value
-  range.value = perspective.uniforms[key].value;
+  //range.value = perspective.uniforms[key].value;
 });
