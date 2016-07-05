@@ -31,7 +31,7 @@ var PerspectiveTransform = function(options) {
 
     'vec2 pinch(vec2 coordinate) {',
     // TODO: Make uniforms
-    '  float bottom_scale = 0.5;',
+    '  float bottom_scale = 1.0;',
     '  float top_scale = 1.0;',
     '  float scale_x_center = 0.5;',
     '  float centered_x = coordinate.x - scale_x_center;',
