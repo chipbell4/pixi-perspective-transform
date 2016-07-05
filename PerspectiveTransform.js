@@ -34,8 +34,9 @@ var PerspectiveTransform = function(options) {
     '  float min_scale = 0.5;',
     '  float max_scale = 1.0;',
     '  float scale_x_center = 0.5;',
-    '  float scaleFactor = (coordinate.x - scale_x_center) / 0.5 * (min_scale + (max_scale - min_scale) * coordinate.y);',
-    '  return coordinate * vec2(scaleFactor, 1.0);',
+    '  float centered_x = coordinate.x - scale_x_center;',
+    '  float scale_factor = min_scale + (max_scale - min_scale) * coordinate.y;',
+    '  return vec2(centered_x * scale_factor + scale_x_center, coordinate.y);',
     '}',
 
     'void main(void){',
