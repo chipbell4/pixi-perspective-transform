@@ -51,6 +51,14 @@ var PerspectiveTransform = function(options) {
     scale_x_center: {
       type: 'f',
       value: options.scale_x_center
+    },
+    viewport: {
+      type: '2f',
+      value: options.viewport,
+    },
+    sprite: {
+      type: '2f',
+      value: options.sprite
     }
   };
 
