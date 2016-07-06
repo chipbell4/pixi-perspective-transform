@@ -17,7 +17,7 @@ graphics.position.x = renderer.width * 0.125;
 graphics.position.y = renderer.height * 0.125;
 
 var perspective = new PerspectiveTransform({
-  viewport: [renderer.width, renderer.height],
+  viewport_dimensions: [renderer.width, renderer.height],
   sprite_dimensions: [graphics.width, graphics.height],
 });
 graphics.filters = [perspective];
