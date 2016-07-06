@@ -11,8 +11,8 @@ document.body.appendChild(renderer.view);
 var stage = new PIXI.Stage(0xFFFFFF);
 
 var graphics = PIXI.Sprite.fromImage('map.png');
-graphics.width = renderer.width * 0.75;
-graphics.height = renderer.height * 0.75;
+graphics.width = renderer.width * 0.5;
+graphics.height = renderer.height * 0.5;
 graphics.position.x = renderer.width * 0.125;
 graphics.position.y = renderer.height * 0.125;
 
