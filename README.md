@@ -1,5 +1,8 @@
 # PIXI PerspectiveTransform Filter
-Example usage:
+A PIXI filter for emulating [Mode-7 style perspective transforms](https://en.wikipedia.org/wiki/Mode_7) on sprites, ala
+F-Zero, Mario Kart, Link to the Past, among others.
+
+## Usage
 ```javascript
 // assuming "renderer" and "stage" exist
 
@@ -25,3 +28,12 @@ sprite.filters = [perspective];
 
 stage.addChild(sprite);
 ```
+
+## Building
+If you want to build it yourself
+```
+npm install
+npm start
+```
+Then, go check out the `index.html` file in your browser (via a webserver and not `file://`). You should see everything
+in action.
