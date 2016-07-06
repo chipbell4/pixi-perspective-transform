@@ -23,7 +23,7 @@ var PerspectiveTransform = function(options) {
 
     'vec2 pinch(vec2 coordinate) {',
     '  float scale_factor = top_scale + (bottom_scale - top_scale) * coordinate.y;',
-    '  return coordinate * vec2(scale_factor, 1.0);',
+    '  return coordinate * vec2(1.0 / scale_factor, 1.0);',
     '}',
 
     'void main(void){',
@@ -31,7 +31,6 @@ var PerspectiveTransform = function(options) {
     '  vec2 spriteUV = sprite_position / viewport_dimensions;',
     '  vec2 localCoords = (vTextureCoord - spriteUV - vec2(scale_x_center, 0.0)) * sprite_dimensions / viewport_dimensions;',
 
-    // pinch
     '   vec2 pinched = pinch(localCoords);',
 
     // convert back to global
