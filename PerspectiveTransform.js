@@ -27,17 +27,19 @@ var PerspectiveTransform = function(options) {
     '}',
 
     'void main(void){',
-       // use the sprite to calculate a local coordinate system for the current point
-    '  vec2 spriteUV = sprite_position / viewport_dimensions;',
-    '  vec2 localCoords = (vTextureCoord - spriteUV - vec2(scale_x_center, 0.0)) * sprite_dimensions / viewport_dimensions;',
+    '  vec2 scale_center = vec2(scale_x_center, 0.0);',
 
-    '   vec2 pinched = pinch(localCoords);',
+       // use the sprite to calculate a local coordinate system for the current point
+    '  vec2 localUV = vTextureCoord * viewport_dimensions / sprite_dimensions;',
+
+    '   vec2 pinched = pinch(localUV - scale_center);',
 
     // convert back to global
-    '   vec2 globalCoords = (pinched * viewport_dimensions / sprite_dimensions) + spriteUV + vec2(scale_x_center, 0.0);',
+    '   vec2 globalCoords = (pinched + scale_center) * sprite_dimensions / viewport_dimensions;',
 
     // Get color
     '   gl_FragColor = texture2D(uSampler, globalCoords) * vColor ;',
+    //'   gl_FragColor = vec4(0.0, 0.0, vTextureCoord.y, 1.0);',
     '}'
   ].join('\n');
 
