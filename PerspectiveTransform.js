@@ -40,7 +40,6 @@ var PerspectiveTransform = function(options) {
 
     // Get color
     '   gl_FragColor = texture2D(uSampler, globalCoords) * vColor ;',
-    //'   gl_FragColor = vec4(0.0, 0.0, vTextureCoord.y, 1.0);',
     '}'
   ].join('\n');
 
