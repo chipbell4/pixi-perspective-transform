@@ -5,6 +5,8 @@
  * @param {float} options.bottom_scale The scale to use at the bottom
  * @param {float} options.top_scale The scale to use at the top
  * @param {float} options.scale_x_center The center from which to scale
+ * @param {vec2} options.viewport_dimensions The size of the viewport
+ * @param {vec2} options.sprite_dimensions The size of the sprite that's being manipulated
  */
 var PerspectiveTransform = function(options) {
   var fragmentShader = [
