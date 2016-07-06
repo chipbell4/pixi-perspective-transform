@@ -12,7 +12,6 @@ var PerspectiveTransform = function(options) {
 
     'uniform vec2 viewport_dimensions;',
     'uniform vec2 sprite_dimensions;',
-    'uniform vec2 sprite_position;',
     'uniform float bottom_scale;',
     'uniform float top_scale;',
     'uniform float scale_x_center;',
@@ -69,10 +68,6 @@ var PerspectiveTransform = function(options) {
       type: '2f',
       value: options.sprite_dimensions
     },
-    sprite_position: {
-      type: 'v2',
-      value: options.sprite_position
-    }
   };
 
   PIXI.AbstractFilter.call(
