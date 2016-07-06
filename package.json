@@ -2,7 +2,7 @@
   "name": "perspective-transform",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "PerspectiveTransform.js",
   "scripts": {
     "test": "jshint *.js",
     "start": "browserify app.js > bundled.js"
