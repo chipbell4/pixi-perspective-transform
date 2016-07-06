@@ -10,19 +10,19 @@ document.body.appendChild(renderer.view);
 // create an new instance of a pixi stage
 var stage = new PIXI.Stage(0xFFFFFF);
 
-var graphics = PIXI.Sprite.fromImage('checker.png');
-graphics.width = renderer.width * 0.5;
-graphics.height = renderer.height * 0.5;
-graphics.position.x = renderer.width * 0.125;
-graphics.position.y = renderer.height * 0.125;
+var sprite = PIXI.Sprite.fromImage('checker.png');
+sprite.width = renderer.width * 0.5;
+sprite.height = renderer.height * 0.5;
+sprite.position.x = renderer.width * 0.125;
+sprite.position.y = renderer.height * 0.125;
 
 var perspective = new PerspectiveTransform({
   viewport_dimensions: [renderer.width, renderer.height],
-  sprite_dimensions: [graphics.width, graphics.height],
+  sprite_dimensions: [sprite.width, sprite.height],
 });
-graphics.filters = [perspective];
+sprite.filters = [perspective];
 window.perspective = perspective;
-stage.addChild(graphics);
+stage.addChild(sprite);
 
 requestAnimationFrame(animate);
 
