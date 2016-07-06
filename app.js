@@ -21,8 +21,10 @@ var perspective = new PerspectiveTransform({
   sprite_dimensions: [sprite.width, sprite.height],
 });
 sprite.filters = [perspective];
-window.perspective = perspective;
 stage.addChild(sprite);
+
+window.sprite = sprite;
+window.perspective = perspective;
 
 requestAnimationFrame(animate);
 
