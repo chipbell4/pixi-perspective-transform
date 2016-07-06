@@ -10,7 +10,7 @@ document.body.appendChild(renderer.view);
 // create an new instance of a pixi stage
 var stage = new PIXI.Stage(0xFFFFFF);
 
-var graphics = PIXI.Sprite.fromImage('map.png');
+var graphics = PIXI.Sprite.fromImage('checker.png');
 graphics.width = renderer.width * 0.5;
 graphics.height = renderer.height * 0.5;
 graphics.position.x = renderer.width * 0.125;
