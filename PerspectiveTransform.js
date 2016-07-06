@@ -11,7 +11,7 @@ var PerspectiveTransform = function(options) {
     'precision lowp float;',
 
     'uniform vec2 viewport;',
-    'uniform vec2 sprite;',
+    'uniform vec2 sprite_dimensions;',
     'uniform float bottom_scale;',
     'uniform float top_scale;',
     'uniform float scale_x_center;',
@@ -28,13 +28,13 @@ var PerspectiveTransform = function(options) {
 
     'void main(void){',
     // convert from viewport to sprite coordinates
-    '   vec2 localCoords = vTextureCoord * sprite / viewport;',
+    '   vec2 localCoords = vTextureCoord * sprite_dimensions / viewport;',
 
     // pinch
     '   vec2 pinched = pinch(localCoords);',
 
     // convert back to global
-    '   vec2 globalCoords = pinched * viewport / sprite;',
+    '   vec2 globalCoords = pinched * viewport / sprite_dimensions;',
 
     // Get color
     '   gl_FragColor = texture2D(uSampler, globalCoords) * vColor ;',
@@ -63,9 +63,9 @@ var PerspectiveTransform = function(options) {
       type: '2f',
       value: options.viewport,
     },
-    sprite: {
+    sprite_dimensions: {
       type: '2f',
-      value: options.sprite
+      value: options.sprite_dimensions
     }
   };
 
