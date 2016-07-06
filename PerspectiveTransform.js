@@ -1,3 +1,11 @@
+var PIXI;
+
+if(typeof require == 'function') {
+  PIXI = require('pixi.js');
+} else {
+  PIXI = window.PIXI;
+}
+
 /**
  * Applies a mode-7 style perspective transform, by pinching along the x-axis, based on the y coordinate. This makes it
  * skinnier at the top (or bottom), and wider at the bottom (or top), making the texture look like a trapezoid
@@ -82,4 +90,8 @@ var PerspectiveTransform = function(options) {
 PerspectiveTransform.prototype = Object.create(PIXI.AbstractFilter.prototype);
 PerspectiveTransform.prototype.constructor = PIXI.AbstractFilter;
 
-module.exports = PerspectiveTransform;
+if(typeof module !== 'undefined') {
+  module.exports = PerspectiveTransform;
+} else {
+  window.PerspectiveTransform = PerspectiveTransform;
+}
