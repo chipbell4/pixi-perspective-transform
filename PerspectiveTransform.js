@@ -7,19 +7,16 @@
  * @param {float} options.scale_x_center The center from which to scale
  */
 var PerspectiveTransform = function(options) {
-  var vertexShader = [
+  var fragmentShader = [
     'precision lowp float;',
-    'attribute vec2 aVertexPosition;',
-    'attribute vec2 aTextureCoord;',
-    'attribute vec4 aColor;',
 
-    'uniform mat3 projectionMatrix;',
     'uniform float bottom_scale;',
     'uniform float top_scale;',
     'uniform float scale_x_center;',
 
     'varying vec2 vTextureCoord;',
     'varying vec4 vColor;',
+    'uniform sampler2D uSampler;',
 
     'vec2 pinch(vec2 coordinate) {',
     '  float centered_x = coordinate.x - scale_x_center;',
@@ -28,9 +25,7 @@ var PerspectiveTransform = function(options) {
     '}',
 
     'void main(void){',
-    '   gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);',
-    '   vTextureCoord = pinch(aTextureCoord);',
-    '   vColor = vec4(aColor.rgb * aColor.a, aColor.a);',
+    '   gl_FragColor = texture2D(uSampler, vTextureCoord) * vColor ;',
     '}'
   ].join('\n');
 
@@ -64,8 +59,8 @@ var PerspectiveTransform = function(options) {
 
   PIXI.AbstractFilter.call(
     this,
-    vertexShader,
     null,
+    fragmentShader,
     uniforms
   );
 };
