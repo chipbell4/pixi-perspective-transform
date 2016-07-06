@@ -12,6 +12,7 @@ var PerspectiveTransform = function(options) {
 
     'uniform vec2 viewport_dimensions;',
     'uniform vec2 sprite_dimensions;',
+    'uniform vec2 sprite_position;',
     'uniform float bottom_scale;',
     'uniform float top_scale;',
     'uniform float scale_x_center;',
@@ -21,20 +22,20 @@ var PerspectiveTransform = function(options) {
     'uniform sampler2D uSampler;',
 
     'vec2 pinch(vec2 coordinate) {',
-    '  float centered_x = coordinate.x - scale_x_center;',
     '  float scale_factor = top_scale + (bottom_scale - top_scale) * coordinate.y;',
-    '  return vec2(centered_x * scale_factor + scale_x_center, coordinate.y);',
+    '  return coordinate * vec2(scale_factor, 1.0);',
     '}',
 
     'void main(void){',
-    // convert from viewport to sprite coordinates
-    '   vec2 localCoords = vTextureCoord * sprite_dimensions / viewport_dimensions;',
+       // use the sprite to calculate a local coordinate system for the current point
+    '  vec2 spriteUV = sprite_position / viewport_dimensions;',
+    '  vec2 localCoords = vTextureCoord - spriteUV - vec2(scale_x_center, 0.0);',
 
     // pinch
     '   vec2 pinched = pinch(localCoords);',
 
     // convert back to global
-    '   vec2 globalCoords = pinched * viewport_dimensions / sprite_dimensions;',
+    '   vec2 globalCoords = pinched + spriteUV + vec2(scale_x_center, 0.0);',
 
     // Get color
     '   gl_FragColor = texture2D(uSampler, globalCoords) * vColor ;',
@@ -66,6 +67,10 @@ var PerspectiveTransform = function(options) {
     sprite_dimensions: {
       type: '2f',
       value: options.sprite_dimensions
+    },
+    sprite_position: {
+      type: 'v2',
+      value: options.sprite_position
     }
   };
 
