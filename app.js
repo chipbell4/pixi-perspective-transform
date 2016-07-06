@@ -16,7 +16,10 @@ graphics.height = renderer.height * 0.75;
 graphics.position.x = renderer.width * 0.125;
 graphics.position.y = renderer.height * 0.125;
 
-var perspective = new PerspectiveTransform();
+var perspective = new PerspectiveTransform({
+  viewport: [renderer.width, renderer.height],
+  sprite: [graphics.width, graphics.height],
+});
 graphics.filters = [perspective];
 window.perspective = perspective;
 stage.addChild(graphics);
