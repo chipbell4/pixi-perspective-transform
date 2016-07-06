@@ -18,6 +18,7 @@ graphics.position.y = renderer.height * 0.125;
 
 var perspective = new PerspectiveTransform();
 graphics.filters = [perspective];
+window.perspective = perspective;
 stage.addChild(graphics);
 
 requestAnimationFrame(animate);
